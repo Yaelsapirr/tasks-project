@@ -22,7 +22,6 @@ function App() {
   useEffect(() => {
     try {
       localStorage.setItem('tasks', JSON.stringify(tasks));
-      console.log('Saved tasks to localStorage:', tasks);
     } catch (error) {
       console.error('Error saving tasks to localStorage:', error);
     }
@@ -64,6 +63,10 @@ function App() {
     ));
   };
 
+  const clearAllTasks = () => {
+    setTasks([]);
+  };
+
   return (
     <div className="app">
       <h1>Task Management App</h1>
@@ -78,6 +81,7 @@ function App() {
           <button onClick={() => setFilter('all')} className={filter === 'all' ? 'active' : ''}>All</button>
           <button onClick={() => setFilter('open')} className={filter === 'open' ? 'active' : ''}>Open</button>
           <button onClick={() => setFilter('closed')} className={filter === 'closed' ? 'active' : ''}>Closed</button>
+          <button onClick={clearAllTasks} className="clear-all">Clear All</button>
         </div>
       </div>
       <TaskList
