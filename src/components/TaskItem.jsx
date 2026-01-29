@@ -5,8 +5,14 @@ const TaskItem = ({ task, onToggleComplete, onDelete, onEdit }) => {
   const [isEditing, setIsEditing] = useState(false);
   const [editTitle, setEditTitle] = useState(task.title);
   const [editDescription, setEditDescription] = useState(task.description);
+  const [editError, setEditError] = useState('');
 
   const handleSave = () => {
+    if (!editTitle.trim()) {
+      setEditError('Title is required');
+      return;
+    }
+    setEditError('');
     onEdit(task.id, { title: editTitle.trim(), description: editDescription.trim() });
     setIsEditing(false);
   };
@@ -30,15 +36,19 @@ const TaskItem = ({ task, onToggleComplete, onDelete, onEdit }) => {
           <input
             type="text"
             value={editTitle}
-            onChange={(e) => setEditTitle(e.target.value)}
+            onChange={(e) => {
+              setEditTitle(e.target.value);
+              if (e.target.value.trim()) setEditError('');
+            }}
             className={styles.editInput}
           />
+          {editError && <div className={styles.errorText}>{editError}</div>}
           <textarea
             value={editDescription}
             onChange={(e) => setEditDescription(e.target.value)}
             className={styles.editTextarea}
           />
-          <button onClick={handleSave} className={styles.saveButton}>Save</button>
+          <button onClick={handleSave} className={styles.saveButton} disabled={!editTitle.trim()}>Save</button>
           <button onClick={handleCancel} className={styles.cancelButton}>Cancel</button>
         </div>
       ) : (

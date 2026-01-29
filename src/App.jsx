@@ -64,7 +64,7 @@ function App() {
   };
 
   const clearAllTasks = () => {
-    setTasks([]);
+    setTasks(tasks.filter(task => !task.completed));
   };
 
   return (
