@@ -17,6 +17,19 @@ A modern, responsive Task Management application built with **React** and **Vite
 
 ## Installation & Setup
 
-Clone the repository:
+Follow these steps to get the project running on your local machine:
+
+1. **Clone the repository:**
+   Open your terminal and run:
    ```bash
    git clone [https://github.com/Yaelsapirr/tasks-project.git](https://github.com/Yaelsapirr/tasks-project.git)
+
+2. **Navigate to the project folder:**
+cd tasks-project
+
+
+3. **Install dependencies: This will install all necessary packages (like React and Vite):**
+npm install
+
+4. **Start the development server: Run this command to open the local server:**
+npm run dev
